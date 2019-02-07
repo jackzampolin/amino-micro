@@ -24,7 +24,7 @@ COPY . .
 RUN make install
 
 # Final image
-FROM alpine:edge
+FROM alpine:3.8
 
 ARG BINARY=amino-micro
 ARG GITHUB_USERNAME=myusername

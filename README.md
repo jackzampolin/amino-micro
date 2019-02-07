@@ -1,37 +1,19 @@
-# Go Boilerplate
+# Amino Micro
 
-This is my current boilerplate for starting new golang projects. This Boilerplate is for building a small golang API server and contains a bunch of nice additions for deployment, as well as providing a nice project structure. This boilerplate uses the [`cobra`](https://github.com/spf13/cobra) CLI framework to provide a hooked-up-out-of-the-box configuration file. There is also a ready to go `Dockerfile` that builds a lightweight `alpine` image to snugly wrap your binary.
-
-You will want to install `cobra` on your system if you don't already have it in order to add more commands. The boilerplate only has `serve` and `version`. Add commands with `cobra add {{ .Command.Name }}`.
-
-To adopt this boilerplate you will need to change names in the following places:
-
-- Once you clone this repo you will need to change the name of the folder to the name of your project.
-- The `Makefile` controls most of the configuration. Just change the variables at the top to match your needs:
-
-```Makefile
-BINARY            = amino-micro
-GITHUB_USERNAME   = jackzampolin
-DOCKER_REPO       = quay.io/jackzampolin
-VERSION           = v0.1.0
-PORT 							= 3000
-```
-
-- Change the name of the `amino-micro.yaml` file to match the name of your project. You will want to make a copy it to `~/.{{ .Project.Name }}` to that you don't have to run every command with the `--config="~/.{{ .Project.Name }}"` flag.
-- Fix the project name in the golang code:
+A small microservice for `amino` encoding input data:
 
 ```bash
-$ make rename
+curl -XPOST localhost:3000/tx/encode --data-binary @tx.json
 ```
 
 ### Build and Run
 
-To build and run this boilerplate run:
+To build and run `amino-micro` run:
 
 ```bash
 $ make install
 $ amino-micro
-A boilerplate for an API written in Golang
+
 
 Usage:
   amino-micro [command]
@@ -68,8 +50,3 @@ To run the just built docker image with the local config loaded and the proper p
 ```bash
 $ make docker-run
 ```
-
-### Inspiration and Contributors:
-
-https://github.com/silven/go-example/blob/master/Makefile
-https://vic.demuzere.be/articles/golang-makefile-crosscompile/

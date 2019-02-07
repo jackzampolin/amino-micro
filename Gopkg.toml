@@ -26,6 +26,39 @@
 
 
 [[constraint]]
+  name = "github.com/cosmos/cosmos-sdk"
+  revision = "3864d5b1bd9d7081fb5f8bc3f9a014e9a0462756"
+
+[[override]]
+  name = "github.com/golang/protobuf"
+  version = "=1.1.0"
+
+[[constraint]]
+  name = "github.com/spf13/cobra"
+  version = "~0.0.1"
+
+[[constraint]]
+  name = "github.com/spf13/viper"
+  version = "~1.0.0"
+
+[[override]]
+  name = "github.com/tendermint/go-amino"
+  version = "v0.14.1"
+
+[[override]]
+  name = "github.com/tendermint/iavl"
+  version = "v0.12.0"
+
+[[override]]
+  name = "github.com/tendermint/tendermint"
+  version = "v0.29.0"
+
+[[override]]
+  name = "golang.org/x/crypto"
+  source = "https://github.com/tendermint/crypto"
+  revision = "3764759f34a542a3aef74d6b02e35be7ab893bba"
+
+[[constraint]]
   name = "github.com/gorilla/handlers"
   version = "1.3.0"
 
@@ -36,14 +69,6 @@
 [[constraint]]
   branch = "master"
   name = "github.com/mitchellh/go-homedir"
-
-[[constraint]]
-  name = "github.com/spf13/cobra"
-  version = "0.0.3"
-
-[[constraint]]
-  name = "github.com/spf13/viper"
-  version = "1.0.2"
 
 [prune]
   go-tests = true

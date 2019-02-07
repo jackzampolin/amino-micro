@@ -26,7 +26,7 @@ all: dep clean linux darwin
 
 # Build and Install project into GOPATH using current OS setup
 install: dep
-	go install ./...
+	go install ${LDFLAGS} ./...
 
 # Build binary for Linux
 linux: dep clean
@@ -61,7 +61,6 @@ docker:
 		.
 	docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest
 	docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:${BRANCH}
-	cd - >/dev/null
 
 # Push the docker image to the configured repo
 docker-push:
@@ -69,26 +68,15 @@ docker-push:
 	docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
 	docker push ${DOCKER_IMAGE}:${BRANCH}
 	docker push ${DOCKER_IMAGE}:latest
-	cd - >/dev/null
 
 # Run the docker image as a server exposing the service port, mounting configuration from this repo
 docker-run:
 	cd ${BUILD_DIR} >/dev/null
 	docker run -p ${PORT}:${PORT} -v ${BUILD_DIR}/${BINARY}.yaml:/root/.${BINARY}.yaml -it ${DOCKER_IMAGE}:${DOCKER_TAG} ${BINARY} serve
-	cd - >/dev/null
-
-# Fix the binary name in the golang code
-# WARNING: Don't run this if you have already started working on the project. Results may be unpredictable
-rename:
-	cd ${BUILD_DIR} >/dev/null
-	find cmd -type f -print0 | xargs -0 sed -i "s#github.com/jackzampolin/amino-micro#github.com/${GITHUB_USERNAME}/${BINARY}#g"
-	find cmd -type f -print0 | xargs -0 sed -i "s#amino-micro#${BINARY}#g"
-	cd - >/dev/null
 
 # Remove all the built binaries
 clean:
 	cd ${BUILD_DIR} >/dev/null
 	rm -rf ${ARTIFACT_DIR}/*
-	cd - >/dev/null
 
 .PHONY: dep linux darwin fmt clean

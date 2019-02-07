@@ -44,7 +44,7 @@ var (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "amino-micro",
-	Short: "A boilerplate for an API written in Golang",
+	Short: "A microservice for encoding JSON to amino",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
